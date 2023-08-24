@@ -1,5 +1,35 @@
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 12px 15px;
+  background: #FFF;
+  shadow-color: rgba(0, 0, 0, 0.50);
+  shadow-offset-width: 0;
+  shadow-offset-height: 2px;
+  elevation: 4;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 20px
+}
+
+.icon {
+  font-size: 21px;
+}
+
+.title {
+  flex-direction: row;
+  align-items: center;
+}
+
+.arrow {
+  margin-right: 19.5px;
+}
+
+.options {
 }

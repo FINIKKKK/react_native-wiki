@@ -1,4 +1,5 @@
 import React from "react";
+import {StatusBar} from "react-native";
 
 interface MainLayoutProps {
     children: React.ReactNode;
@@ -7,6 +8,7 @@ interface MainLayoutProps {
 export const MainLayout: React.FC<MainLayoutProps> = ({children}) => {
     return (
         <>
+            <StatusBar/>
             {children}
         </>
     );
