@@ -1,8 +1,8 @@
 .field {
   flex-direction: row;
+  align-items: center;
   border-bottom-width: 1px;
   border-bottom-color: #B5B4BE;
-  padding: 17px 0;
   margin-bottom: 40-17px;
 }
 
@@ -13,4 +13,6 @@
 
 .input {
   font-size: 18px;
+  padding: 17px 0;
+  flex: 1;
 }

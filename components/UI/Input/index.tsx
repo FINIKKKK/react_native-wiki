@@ -7,14 +7,16 @@ import {IconDefinition} from "@fortawesome/free-solid-svg-icons";
 
 interface InputProps {
     icon: IconDefinition,
-    label: string
+    label: string;
+    onChangeText: (value: string) => void
 }
 
-export const Input: React.FC<InputProps> = ({icon, label}) => {
+export const Input: React.FC<InputProps> = ({icon, label, ...props},) => {
     return (
         <View style={[ss.field]}>
             <FontAwesomeIcon style={ss.icon} icon={icon} color='#B5B4BE' size={21}/>
-            <TextInput style={ss.input} placeholder={label} placeholderTextColor="#B5B4BE"/>
+            <TextInput style={[ss.input]}
+                       placeholder={label} placeholderTextColor="#B5B4BE" {...props}/>
         </View>
     );
 };
