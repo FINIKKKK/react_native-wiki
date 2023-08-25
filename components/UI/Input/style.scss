@@ -1,8 +1,6 @@
+@import '../../../assets/styles/variables';
+
 .field {
-  flex-direction: row;
-  align-items: center;
-  border-bottom-width: 1px;
-  border-bottom-color: #B5B4BE;
   margin-bottom: 40-17px;
 }
 
@@ -11,8 +9,26 @@
   margin-right: 24px;
 }
 
+.input_wpapper {
+  flex-direction: row;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-color: #B5B4BE;
+}
+
 .input {
   font-size: 18px;
   padding: 17px 0;
   flex: 1;
+}
+
+.error {
+  border-bottom-color: $red;
+}
+
+.errors {
+  color: $red;
+  font-size: 11px;
+  position: absolute;
+  bottom: -15px;
 }
