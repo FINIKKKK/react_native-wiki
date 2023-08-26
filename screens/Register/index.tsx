@@ -12,6 +12,9 @@ import '../../assets/styles/variables.scss';
 import {string} from "yup";
 import {useValidation} from "../../hooks/useValidation";
 import {RegisterScheme} from "../../utils/validation";
+import {TAuthData} from "../../utils/types/account";
+import {useFetch} from "../../hooks/useFetch";
+import axios from "axios/index";
 
 export const Register: React.FC = () => {
     /**
@@ -46,8 +49,19 @@ export const Register: React.FC = () => {
         };
 
         // Вызываем хук для валидации форм
-        const isValid = await validateForm(dto, RegisterScheme);
-        if (!isValid) return false;
+        // const isValid = await validateForm(dto, RegisterScheme);
+        // if (!isValid) return false;
+
+        // Регистрация пользователя
+        // const { data } = await useFetch<TAuthData>('/register/secure', {
+        //     data: dto,
+        //     method: 'POST',
+        // });
+        console.log(dto);
+
+        const {data, request} = await axios.post('https://api.wiki.itl.systems/account/register/secure', dto
+        );
+        // console.log(data, request);
     };
 
 

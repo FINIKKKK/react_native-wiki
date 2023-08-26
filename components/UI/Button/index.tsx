@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TouchableOpacity, ViewStyle} from "react-native";
+import {Text, TouchableHighlight, ViewStyle} from "react-native";
 import ss from "./style.scss";
 
 interface BtnProps {
@@ -10,8 +10,8 @@ interface BtnProps {
 
 export const Btn: React.FC<BtnProps> = (props) => {
     return (
-        <TouchableOpacity style={[ss.btn, props.styles]} onPress={props.onPress}>
+        <TouchableHighlight underlayColor="#72A3E8" style={[ss.btn, props.styles]} onPress={props.onPress}>
             <Text style={ss.label}>{props.label}</Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
     );
 };
