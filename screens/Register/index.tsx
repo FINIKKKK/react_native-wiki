@@ -9,7 +9,6 @@ import ss from "./style.scss";
 import {Text} from "react-native";
 import {Link} from "@react-navigation/native";
 import '../../assets/styles/variables.scss';
-import {string} from "yup";
 import {useValidation} from "../../hooks/useValidation";
 import {RegisterScheme} from "../../utils/validation";
 import {TAuthData} from "../../utils/types/account";
@@ -80,10 +79,10 @@ export const Register: React.FC = () => {
                        errors={errors['email']}/>
 
                 <Input icon={faPhone} label="Телефон" onChangeText={text => handleOnchange(text, 'phone')}
-                       errors={errors['phone']}/>
+                       errors={errors['phone']} phone/>
 
                 <Input icon={faLock} label="Пароль" onChangeText={text => handleOnchange(text, 'password')}
-                       errors={errors['password']}/>
+                       errors={errors['password']} password/>
 
                 <Btn onPress={onRegister} styles={{marginTop: 15}} label="Зарегистрироваться"/>
 
