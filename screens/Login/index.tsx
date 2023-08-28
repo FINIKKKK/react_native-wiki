@@ -12,6 +12,9 @@ import { TAuthData } from '../../utils/types/account';
 import { useValidation } from '../../hooks/useValidation';
 import { useCustomFetch } from '../../hooks/useCustomFetch';
 import ssAuth from '../../layouts/auth/style.scss';
+import { setUser } from '../../store/slices/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const Login: React.FC = () => {
   /**
@@ -21,6 +24,8 @@ export const Login: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const { errors, validateForm } = useValidation();
   const { useFetch, errors: errorsRequest, isLoading } = useCustomFetch();
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
 
   /**
    * Методы ----------------
@@ -32,19 +37,24 @@ export const Login: React.FC = () => {
       email,
       password,
     };
-    
+
+    console.log(dto);
+
     // Вызываем хук для валидации форм
     const isValid = await validateForm(dto, LoginScheme);
     if (!isValid) return false;
 
-    // Регистрация пользователя
-    const data: TAuthData = await useFetch('/account/auth', {
+    // Авторизация пользователя
+    const { data }: { data: TAuthData } = await useFetch('/account/auth', {
       data: dto,
       method: 'POST',
     });
 
-    if (data) {
       console.log(data);
+    if (data) {
+      console.log(data.user);
+      dispatch(setUser(data.user));
+      console.log('user', user);
     }
   };
 
@@ -80,7 +90,12 @@ export const Login: React.FC = () => {
         password
       />
 
-      <Btn onPress={onLogin} styles={ssAuth.btn} label="Вход" disabled={isLoading} />
+      <Btn
+        onPress={onLogin}
+        styles={ssAuth.btn}
+        label="Вход"
+        disabled={isLoading}
+      />
     </AuthLayout>
   );
 };

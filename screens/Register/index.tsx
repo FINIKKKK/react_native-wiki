@@ -12,6 +12,8 @@ import { RegisterScheme } from '../../utils/validation';
 import { TAuthData } from '../../utils/types/account';
 import { useCustomFetch } from '../../hooks/useCustomFetch';
 import ssAuth from '../../layouts/auth/style.scss';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/slices/user';
 
 export const Register: React.FC = () => {
   /**
@@ -26,6 +28,7 @@ export const Register: React.FC = () => {
   });
   const { errors, validateForm } = useValidation();
   const { useFetch, errors: errorsRequest, isLoading } = useCustomFetch();
+  const dispatch = useDispatch();
 
   /**
    * Методы ----------------
@@ -58,6 +61,7 @@ export const Register: React.FC = () => {
 
     if (data) {
       console.log(data);
+      dispatch(setUser(data));
     }
   };
 

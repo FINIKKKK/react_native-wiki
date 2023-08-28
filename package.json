@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^19.0.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
@@ -20,12 +21,21 @@
     "expo-status-bar": "~1.6.0",
     "node-sass": "^9.0.0",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.72.4",
     "react-native-css-transformer": "^1.2.4",
     "react-native-masked-text": "^1.13.0",
     "react-native-network-logger": "^1.15.0",
     "react-native-sass-transformer": "^2.0.0",
+    "react-native-web": "~0.19.6",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
+    "remote-redux-devtools": "^0.5.16",
+    "webpack-bundle-analyzer": "^4.9.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
