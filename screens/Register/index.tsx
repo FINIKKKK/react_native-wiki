@@ -11,6 +11,7 @@ import { useValidation } from '../../hooks/useValidation';
 import { RegisterScheme } from '../../utils/validation';
 import { TAuthData } from '../../utils/types/account';
 import { useCustomFetch } from '../../hooks/useCustomFetch';
+import ssAuth from '../../layouts/auth/style.scss';
 
 export const Register: React.FC = () => {
   /**
@@ -55,22 +56,24 @@ export const Register: React.FC = () => {
       method: 'POST',
     });
 
-    console.log(data);
+    if (data) {
+      console.log(data);
+    }
   };
 
   return (
-    <AuthLayout title="Регистрация">
-      <Text style={ss.text1}>
+    <AuthLayout title="Регистрация" btn="Зарегистрироваться">
+      <Text style={ssAuth.text1}>
         У вас уже есть аккаунт? {}
-        <Link to="/login" style={ss.link1}>
+        <Link to="/login" style={ssAuth.link1}>
           Войти
         </Link>
       </Text>
 
       {errorsRequest && (
-        <View style={ss.errors}>
+        <View style={ssAuth.errors}>
           {errorsRequest?.map((error: string) => (
-            <Text style={ss.error}>{error}</Text>
+            <Text style={ssAuth.error}>{error}</Text>
           ))}
         </View>
       )}
@@ -114,20 +117,10 @@ export const Register: React.FC = () => {
 
       <Btn
         onPress={onRegister}
-        styles={{ marginTop: 15 }}
+        styles={ssAuth.btn}
         label="Зарегистрироваться"
+        disabled={isLoading}
       />
-
-      <Text style={ss.text2}>
-        Нажимая на кнопку, вы соглашаетесь с условиями{' '}
-        <Link to="#" style={ss.link2}>
-          "Оферты и лицензионного договора"
-        </Link>{' '}
-        и{' '}
-        <Link to="#" style={ss.link2}>
-          "Политикой обработки персональных данных"
-        </Link>
-      </Text>
     </AuthLayout>
   );
 };
