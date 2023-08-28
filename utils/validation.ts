@@ -31,7 +31,7 @@ export const RegisterScheme = yup.object().shape({
         .string()
         .required('Поле является обязательным')
         .matches(
-            /^\+?\d{1,3}-?\d{3}-?\d{3}-?\d{2}-?\d{2}$/,
+            /^(\+7)[ ]\((\d{3})\)[ ](\d{3})[-](\d{2})[-](\d{2})$/,
             'Некорректный номер телефона',
         ),
     password: yup

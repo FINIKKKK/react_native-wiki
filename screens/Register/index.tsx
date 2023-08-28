@@ -5,14 +5,12 @@ import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { Btn } from '../../components/UI/Button';
 import { faLock, faPhone } from '@fortawesome/free-solid-svg-icons';
 import ss from './style.scss';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import { Link } from '@react-navigation/native';
-import '../../assets/styles/variables.scss';
 import { useValidation } from '../../hooks/useValidation';
 import { RegisterScheme } from '../../utils/validation';
 import { TAuthData } from '../../utils/types/account';
 import { useCustomFetch } from '../../hooks/useCustomFetch';
-import axios from 'axios';
 
 export const Register: React.FC = () => {
   /**
@@ -48,28 +46,30 @@ export const Register: React.FC = () => {
     };
 
     // Вызываем хук для валидации форм
-    // const isValid = await validateForm(dto, RegisterScheme);
-    // if (!isValid) return false;
+    const isValid = await validateForm(dto, RegisterScheme);
+    if (!isValid) return false;
 
     // Регистрация пользователя
-    const { data } = await useFetch('/account/register/secure', {
+    const data: TAuthData = await useFetch('/account/register/secure', {
       data: dto,
       method: 'POST',
     });
+
+    console.log(data);
   };
 
   return (
     <AuthLayout title="Регистрация">
       <Text style={ss.text1}>
-        У вас уже есть аккаунт?{' '}
-        <Link to="login" style={ss.link1}>
+        У вас уже есть аккаунт? {}
+        <Link to="/login" style={ss.link1}>
           Войти
         </Link>
       </Text>
 
       {errorsRequest && (
         <View style={ss.errors}>
-          {errorsRequest.map((error: string) => (
+          {errorsRequest?.map((error: string) => (
             <Text style={ss.error}>{error}</Text>
           ))}
         </View>

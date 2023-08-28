@@ -12,7 +12,7 @@ export const useCustomFetch = <T>() => {
   /**
    * Переменные ----------------
    */
-  const [data, setData] = React.useState<T | null>(null);
+  const [data, setData] = React.useState<any | null>(null);
   const [errors, setErrors] = React.useState<any | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -28,17 +28,16 @@ export const useCustomFetch = <T>() => {
           'Content-Type': 'application/json',
           // Authorization: `Bearer ${token}`,
         },
-        method:
-          (options?.method as 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE') ||
-          'GET',
+        method: options?.method || 'GET',
         ...options,
       };
 
-      const response: AxiosResponse<RequestData<T>> = await axios(
+      const { data }: AxiosResponse<RequestData<T>> = await axios(
         url,
         axiosOptions,
       );
-      setData(response.data.data);
+      setData(data);
+      setErrors(null);
     } catch (err: any) {
       if (err.response) {
         // Конвертируем ошибки
@@ -55,9 +54,9 @@ export const useCustomFetch = <T>() => {
     }
 
     // Возвращаем данные
-    return { data, errors, isLoading };
+    return data;
   };
 
   // Возвращаем функцию
-  return { useFetch, data, errors, isLoading };
+  return { useFetch, errors, isLoading };
 };
