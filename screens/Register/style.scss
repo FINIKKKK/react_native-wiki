@@ -22,3 +22,11 @@
 .link2 {
   text-decoration: underline;
 }
+
+.errors {
+  margin-bottom: 10px;
+}
+.error {
+  color: $red;
+  font-size: 12px;
+}
