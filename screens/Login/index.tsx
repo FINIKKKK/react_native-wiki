@@ -1,11 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import ss from './style.scss';
 import { Link } from '@react-navigation/native';
 import { Input } from '../../components/UI/Input';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { Btn } from '../../components/UI/Button';
 import { AuthLayout } from '../../layouts/auth';
 import { LoginScheme } from '../../utils/validation';
 import { TAuthData } from '../../utils/types/account';
@@ -15,6 +13,8 @@ import ssAuth from '../../layouts/auth/style.scss';
 import { setUser } from '../../store/slices/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Btn } from '../../components/UI/Button';
+import * as SecureStore from 'expo-secure-store';
 
 export const Login: React.FC = () => {
   /**
@@ -50,8 +50,9 @@ export const Login: React.FC = () => {
       method: 'POST',
     });
 
-      console.log(data);
+    console.log(data);
     if (data) {
+      await SecureStore.setItemAsync('token', data.token);
       console.log(data.user);
       dispatch(setUser(data.user));
       console.log('user', user);

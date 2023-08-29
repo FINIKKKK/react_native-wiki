@@ -4,7 +4,6 @@ import { Input } from '../../components/UI/Input';
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { Btn } from '../../components/UI/Button';
 import { faLock, faPhone } from '@fortawesome/free-solid-svg-icons';
-import ss from './style.scss';
 import { Text, View } from 'react-native';
 import { Link } from '@react-navigation/native';
 import { useValidation } from '../../hooks/useValidation';
@@ -14,6 +13,7 @@ import { useCustomFetch } from '../../hooks/useCustomFetch';
 import ssAuth from '../../layouts/auth/style.scss';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/user';
+import * as SecureStore from 'expo-secure-store';
 
 export const Register: React.FC = () => {
   /**
@@ -49,6 +49,9 @@ export const Register: React.FC = () => {
       password: inputs.password,
     };
 
+    const token = await SecureStore.getItemAsync('token');
+    console.log(token);
+
     // Вызываем хук для валидации форм
     const isValid = await validateForm(dto, RegisterScheme);
     if (!isValid) return false;
@@ -61,7 +64,7 @@ export const Register: React.FC = () => {
 
     if (data) {
       console.log(data);
-      dispatch(setUser(data));
+      dispatch(setUser(data.user));
     }
   };
 
