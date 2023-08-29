@@ -1,5 +1,7 @@
+@import '../../../assets/styles/variables';
+
 .btn {
-  background-color: #0E65DD;
+  background-color: $blue;
   font-size: 14px;
   padding: 20px;
   flex-direction: row;
@@ -15,4 +17,14 @@
 
 .disabled {
   background-color: #999;
+}
+
+.btn2 {
+  background-color: transparent;
+  border-color: $blue;
+  border-width: 1px;;
+}
+
+.label2 {
+  color: $blue;
 }

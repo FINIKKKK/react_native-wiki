@@ -8,13 +8,10 @@ interface AuthLayoutProps {
   children: React.ReactNode;
   title: string;
   btn?: string;
+  text?: string;
 }
 
-export const AuthLayout: React.FC<AuthLayoutProps> = ({
-  children,
-  title,
-  btn,
-}) => {
+export const AuthLayout: React.FC<AuthLayoutProps> = (props) => {
   return (
     <MainLayout>
       <View style={ss.container}>
@@ -24,13 +21,15 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
         />
         <Image style={ss.img} source={require('../../assets/img/logo.png')} />
         <View style={ss.form}>
-          <Text style={ss.title}>{title}</Text>
+          <Text style={ss.title}>{props.title}</Text>
 
-          {children}
+          {props.text && <Text style={ss.text}>{props.text}</Text>}
 
-          {btn && (
+          {props.children}
+
+          {props.btn && (
             <Text style={ss.text2}>
-              Нажимая на кнопку «{btn}», вы соглашаетесь с условиями{' '}
+              Нажимая на кнопку «{props.btn}», вы соглашаетесь с условиями{' '}
               <Link to="#" style={ss.link2}>
                 «Оферты и лицензионного договора»
               </Link>{' '}

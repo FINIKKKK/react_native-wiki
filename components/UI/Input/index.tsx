@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-
 import ss from './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Register } from './Register';
 import { Login } from './Login';
 import { CreateCompany } from './CreateCompany';
+import { AddUsers } from './AddUsers';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,8 +13,8 @@ export const Navigation: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="create_company"
-          component={CreateCompany}
+          name="add_users"
+          component={AddUsers}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -24,6 +25,11 @@ export const Navigation: React.FC = () => {
         <Stack.Screen
           name="login"
           component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="create_company"
+          component={CreateCompany}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
