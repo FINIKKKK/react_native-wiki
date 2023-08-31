@@ -5,6 +5,7 @@ import { Register } from './Register';
 import { Login } from './Login';
 import { CreateCompany } from './CreateCompany';
 import { AddUsers } from './AddUsers';
+import { Speech } from './AddUsers/Speech';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +13,11 @@ export const Navigation: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="speech"
+          component={Speech}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="add_users"
           component={AddUsers}

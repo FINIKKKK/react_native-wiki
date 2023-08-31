@@ -3,6 +3,7 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import ss from './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCaretDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { values } from '../../../screens/AddUsers';
 
 export interface TItem {
   value: string;
@@ -11,6 +12,7 @@ export interface TItem {
 
 interface SelectProps {
   values: TItem[];
+  setValue: (item: TItem) => void;
   icon?: IconDefinition;
   label?: string;
 }
@@ -19,7 +21,7 @@ export const Select: React.FC<SelectProps> = (props) => {
   /**
    * Переменные ----------------
    */
-  const [activeItem, setActiveItem] = React.useState<TItem>(props.values[0]);
+  const [activeItem, setActiveItem] = React.useState<TItem>(values[0]);
   const [isOpen, setIsOpen] = React.useState(false);
 
   /**
@@ -27,6 +29,7 @@ export const Select: React.FC<SelectProps> = (props) => {
    */
   // Установить активный элемент
   const setActive = (item: TItem) => {
+    props.setValue(item);
     setActiveItem(item);
     setIsOpen(false);
   };

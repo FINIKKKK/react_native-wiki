@@ -19,6 +19,7 @@
     "axios": "^1.4.0",
     "expo": "~49.0.8",
     "expo-secure-store": "^12.3.1",
+    "expo-speech": "~11.3.0",
     "expo-status-bar": "~1.6.0",
     "node-sass": "^9.0.0",
     "react": "18.2.0",
@@ -29,6 +30,8 @@
     "react-native-masked-text": "^1.13.0",
     "react-native-network-logger": "^1.15.0",
     "react-native-sass-transformer": "^2.0.0",
+    "react-native-sound": "^0.11.2",
+    "react-native-tts": "^4.1.0",
     "react-native-web": "~0.19.6",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
@@ -38,7 +41,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "expo-av": "~13.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -50,7 +54,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-root-import": "^6.6.0",
-    "prettier": "^3.0.2",
+    "prettier": "^3.0.3",
     "typescript": "^5.1.6"
   },
   "private": true
