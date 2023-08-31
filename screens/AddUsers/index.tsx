@@ -1,9 +1,16 @@
 import React from 'react';
 import { AuthLayout } from '../../layouts/auth';
 import { Input } from '../../components/UI/Input';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { Btn } from '../../components/UI/Button';
 import ssAuth from '../../layouts/auth/style.scss';
+import { Select } from '../../components/UI/Select';
+
+export const values = [
+  { value: 'user', label: 'Пользователь' },
+  { value: 'admin', label: 'Администратор' },
+  { value: 'moder', label: 'Модератор' },
+];
 
 export const AddUsers: React.FC = () => {
   /**
@@ -31,7 +38,12 @@ export const AddUsers: React.FC = () => {
         onChangeText={(text) => setEmails(text)}
       />
 
-      <Btn label="Выслать приглашение" styles={ssAuth.btn} />
+      <Select values={values} icon={faUser} />
+
+      <Btn
+        label="Выслать приглашение"
+        styles={[ssAuth.btn, { marginTop: 40 }]}
+      />
       <Btn label="Пропустить" type="btn2" />
     </AuthLayout>
   );
