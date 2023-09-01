@@ -108,7 +108,7 @@ export const AddUsersScheme = yup.object().shape({
  * Приглашение пользователей 2
  */
 export const AddUsersScheme2 = yup.object().shape({
-    emails: yup
+    email: yup
         .string()
         .required('Прежде заполните поле')
         .test(

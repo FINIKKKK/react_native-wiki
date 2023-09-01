@@ -43,6 +43,7 @@ export const useValidation = () => {
     // Возвращаем данные
     return {
         errors,
+        setErrors,
         validateForm,
     };
 };

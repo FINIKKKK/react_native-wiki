@@ -15,6 +15,7 @@ interface InputProps {
   password?: boolean;
   phone?: boolean;
   type?: 'address';
+  onSubmitEditing?: () => void;
 }
 
 export const Input: React.FC<InputProps> = ({

@@ -9,6 +9,9 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import ss from './style.scss';
+import { useValidation } from '../../hooks/useValidation';
+import { AddUsersScheme, AddUsersScheme2 } from '../../utils/validation';
+import { useCustomFetch } from '../../hooks/useCustomFetch';
 
 export const values = [
   { value: 'user', label: 'Пользователь' },
@@ -23,24 +26,53 @@ export const AddUsers: React.FC = () => {
   const [emails, setEmails] = React.useState<string[]>([]);
   const [emailsValue, setEmailsValue] = React.useState('');
   const [role, setRole] = React.useState<TItem>(values[0]);
+  const { errors, setErrors, validateForm } = useValidation();
+  const { useFetch } = useCustomFetch();
 
   /**
    * Методы ----------------
    */
   // Выслать приглашения
-  const onInvite = () => {
-    setEmailsValue('');
+  const onInvite = async () => {
+    // Данные
+    const dto = {
+      // team_id: teamController.activeTeamId,
+      role: role.value,
+      emails,
+    };
+
+    // Валидируем данные
+    const isValid = await validateForm({ emails }, AddUsersScheme);
+    if (!isValid) return false;
+
+    // Высылаем приглашения
+    const { message } = await useFetch('team/employees/add', {
+      data: dto,
+      method: 'POST',
+    });
+
+    if (message) {
+    }
   };
 
   // При вводе в поле, добавлять emails в список
-  const onChangeEmailsValue = (value: string) => {
+  const onChangeEmailsValue = async (value: string) => {
     setEmailsValue(value);
+
+    // Валидируем данные
+    const isValid = await validateForm({ email: emailsValue }, AddUsersScheme2);
+    if (!isValid) return false;
+
     if (value.includes(',') || value.includes(' ')) {
+      // Добавляем в список
       setEmails((prev) => [
         ...prev,
         emailsValue.split(',')[0] || emailsValue.split('')[0],
       ]);
+      // Очищаем поле
       setEmailsValue('');
+      // Очищаем ошибки
+      setErrors({});
     }
   };
 
@@ -58,12 +90,20 @@ export const AddUsers: React.FC = () => {
       text="Основные достоинства itl.wiki раскрываются, когда вы работаете в связке
         с другими участниками команды и обсуждаете проекты."
     >
+      {errors['emails'] && (
+        <Text style={[ssAuth.error, { marginTop: -15 }]}>
+          {errors['emails']}
+        </Text>
+      )}
+
       <Input
         icon={faEnvelope}
         label="Введите email адреса через
 запятую или пробел"
         onChangeText={(text) => onChangeEmailsValue(text)}
         value={emailsValue}
+        onSubmitEditing={onInvite}
+        errors={errors['email']}
       />
 
       <Select values={values} setValue={setRole} icon={faUser} />
