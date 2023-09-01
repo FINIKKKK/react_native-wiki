@@ -10,6 +10,7 @@ interface InputProps {
   icon: IconDefinition;
   label: string;
   onChangeText: (value: string) => void;
+  value?: string;
   errors?: string[];
   password?: boolean;
   phone?: boolean;
